@@ -710,6 +710,47 @@ class Flux_Athena {
 			return false;
 		}
 	}
+
+	public function lv2sp($level) {
+		$statpoint = 48;
+		$statperlv = 3;
+		for ($curlv = 2; $curlv <= $level; $curlv++){
+		  $statpoint += $statperlv;
+		  if ($curlv % 5 == 0) $statperlv++;
+		}
+		return $statpoint;
+	}
+
+	public function resetStatPoint($charID)
+	{
+		// Return values:
+		// -1 = Character is online, cannot reset.
+		// -2 = Unknown character.
+		// false = Failed to reset.
+		// true  = Successfully reset.
+		
+		$char = $this->getCharacter($charID);
+
+		if (!$char) {
+			return -2;
+		}
+		if ($char->online) {
+			return -1;
+		}
+
+		$sql = "SELECT `base_level` FROM {$this->charMapDatabase}.`char` WHERE `char`.`char_id` = ?";
+		$sth  = $this->connection->getStatement($sql);
+		if ($sth->execute(array($charID))) {
+			$result=$sth->fetch();
+			$sp = $this->lv2sp($result->base_level);
+			$sql  = "UPDATE {$this->charMapDatabase}.`char` SET ";
+			$sql .= "`str`=1, `agi`=1, `vit`=1, `int`=1, `dex`=1, `luk`=1, `status_point`={$sp} ";
+			$sql .= "WHERE char_id = ?";
+			$sth  = $this->connection->getStatement($sql);
+			if ($sth->execute(array($charID))) { return true; }
+		}
+		return false;
+	}
 	
 	/**
 	 * Get the current server time, based on the DateTimezone servers.php config.

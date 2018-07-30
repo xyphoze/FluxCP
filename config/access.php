@@ -61,12 +61,13 @@ return array(
 		'character'	=> array(
 			'index'			=> AccountLevel::LOWGM,
 			'view'			=> AccountLevel::NORMAL,
-			'online'		=> AccountLevel::ANYONE,
-			'prefs'			=> AccountLevel::NORMAL,
+			'online'		=> AccountLevel::NORMAL,
+			'prefs'			=> AccountLevel::NOONE,
 			'changeslot'	=> AccountLevel::NORMAL,
 			'resetlook'		=> AccountLevel::NORMAL,
 			'resetpos'		=> AccountLevel::NORMAL,
-			'mapstats'		=> AccountLevel::ANYONE,
+            'resetstat'     => AccountLevel::NORMAL,
+			'mapstats'		=> AccountLevel::NORMAL,
 			'divorce'		=> AccountLevel::NORMAL
 		),
 		'guild'		=> array(
@@ -225,8 +226,8 @@ return array(
 		'DeleteShopItem'     => AccountLevel::ADMIN,  // Ability to remove an item for sale on the shop.
 		'ManageCashShop'     => AccountLevel::ADMIN,  // Ability to manage the in-game cash shop.
 		'ViewGuild'          => AccountLevel::ADMIN,  // Ability to view another guild's details.
-		'SearchWhosOnline'   => AccountLevel::ANYONE, // Ability to search the "Who's Online" page.
-		'ViewOnlinePosition' => AccountLevel::LOWGM,  // Ability to see a character's current map on "Who's Online" page.
+		'SearchWhosOnline'   => AccountLevel::NORMAL, // Ability to search the "Who's Online" page.
+		'ViewOnlinePosition' => AccountLevel::NORMAL,  // Ability to see a character's current map on "Who's Online" page.
 		'EditAccountGroupID' => AccountLevel::ADMIN,  // Ability to edit another person's account group ID.
 		'EditAccountBalance' => AccountLevel::ADMIN,  // Ability to edit another person's account balance.
 		'ModifyAccountPrefs' => AccountLevel::ADMIN,  // Ability to modify another person's account preferences.
@@ -243,6 +244,7 @@ return array(
 		'ViewRawTxnLogData'  => AccountLevel::ADMIN,  // Minimum group level required to view Raw Transaction Log in txnview page.
 		'ResetLook'          => AccountLevel::LOWGM,  // Minimum group level required to reset another character's look.
 		'ResetPosition'      => AccountLevel::LOWGM,  // Minimum group level required to reset another character's position.
+                'ResetStat'      => AccountLevel::LOWGM,  // Minimum group level required to reset another character's stat.
 		'ViewWoeDisallowed'  => AccountLevel::LOWGM,  // Minimum group level required to bypass WoE-disabled page security check.
 		'SeeCpLoginLogPass'  => AccountLevel::NOONE,  // Minimum group level required to see password in CP login log (also requires CpLoginLogShowPassword in application.php)
 		'SearchCpLoginLogPw' => AccountLevel::NOONE,  // Minimum group level required to search through passwords in the CP login log.

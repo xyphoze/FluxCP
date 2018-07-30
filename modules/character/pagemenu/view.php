@@ -12,6 +12,9 @@ if (($isMine || $auth->allowedToResetLook) && $auth->actionAllowed('character', 
 if (($isMine || $auth->allowedToResetPosition) && $auth->actionAllowed('character', 'resetpos')) {
 	$pageMenu['Reset Position'] = $this->url('character', 'resetpos', array('id' => $char->char_id));
 }
+if (($isMine || $auth->allowedToResetStat) && $auth->actionAllowed('character', 'resetstat')) {
+        $pageMenu['Reset Stat'] = $this->url('character', 'resetstat', array('id' => $char->char_id));
+}
 if ($char->partner_id && ($isMine || $auth->allowedToDivorceCharacter) && $auth->actionAllowed('character', 'divorce')) {
 	$pageMenu['Divorce'] = $this->url('character', 'divorce', array('id' => $char->char_id));
 }

@@ -380,6 +380,10 @@ return array(
 	'CantResetFromCurrentMap' => "You cannot reset %s's position from the current map.",
 	'ResetPositionSuccessful' => "%s's position has been reset!",
 	'ResetPositionFailed'     => "Failed to reset %s's position.",
+	// - character/resetstat
+	'CantResetStatWhenOnline'  => 'Cannot reset stat while %s is online.',
+	'ResetStatSuccessful' => "%s's stat has been reset!",
+	'ResetStatFailed'     => "Failed to reset %s's stat.",
 	// - character/view
 	// - character/divorce
 	'DivorceTitle'            => 'Divorce',
