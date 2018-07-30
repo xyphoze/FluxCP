@@ -244,7 +244,7 @@ return array(
 		'ViewRawTxnLogData'  => AccountLevel::ADMIN,  // Minimum group level required to view Raw Transaction Log in txnview page.
 		'ResetLook'          => AccountLevel::LOWGM,  // Minimum group level required to reset another character's look.
 		'ResetPosition'      => AccountLevel::LOWGM,  // Minimum group level required to reset another character's position.
-                'ResetStat'      => AccountLevel::LOWGM,  // Minimum group level required to reset another character's stat.
+        'ResetStat'          => AccountLevel::LOWGM,  // Minimum group level required to reset another character's stat.
 		'ViewWoeDisallowed'  => AccountLevel::LOWGM,  // Minimum group level required to bypass WoE-disabled page security check.
 		'SeeCpLoginLogPass'  => AccountLevel::NOONE,  // Minimum group level required to see password in CP login log (also requires CpLoginLogShowPassword in application.php)
 		'SearchCpLoginLogPw' => AccountLevel::NOONE,  // Minimum group level required to search through passwords in the CP login log.
