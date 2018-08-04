@@ -1,25 +1,18 @@
 <?php
 if (!defined('FLUX_ROOT')) exit;
-
 $this->loginRequired();
-
 $title = Flux::message('AccountEditTitle');
-
 $accountID = $params->get('id');
-
 $creditsTable  = Flux::config('FluxTables.CreditsTable');
 $creditColumns = 'credits.balance, credits.last_donation_date, credits.last_donation_amount';
-
 $sql  = "SELECT login.*, {$creditColumns} FROM {$server->loginDatabase}.login ";
 $sql .= "LEFT OUTER JOIN {$creditsTable} AS credits ON login.account_id = credits.account_id ";
 $sql .= "WHERE login.sex != 'S' AND login.group_id >= 0 AND login.account_id = ? LIMIT 1";
 $sth  = $server->connection->getStatement($sql);
 $sth->execute(array($accountID));
-
 // Account object.
 $account = $sth->fetch();
 $isMine  = false;
-
 if ($account) {
 	if ($account->group_id > $session->account->group_id && !$auth->allowedToEditHigherPower) {
 		$this->deny();
@@ -71,7 +64,6 @@ if ($account) {
 			$errorMessage = Flux::message('InvalidLastLoginDate');
 		}
 		else {
-			$vip_time = strtotime($vip_time);
 			$bind = array(
 				'email'      => $email,
 				'sex'        => $gender,
@@ -79,11 +71,10 @@ if ($account) {
 				'birthdate'  => $birthdate ? $birthdate : $account->birthdate,
 				'lastlogin'  => $lastLogin ? $lastLogin : $account->lastlogin,
 				'last_ip'    => $lastIP,
-				'vip_time'   => $vip_time
 			);
 			
 			$sql  = "UPDATE {$server->loginDatabase}.login SET email = :email, ";
-			$sql .= "sex = :sex, logincount = :logincount, birthdate = :birthdate, lastlogin = :lastlogin, last_ip = :last_ip, vip_time = :vip_time";
+			$sql .= "sex = :sex, logincount = :logincount, birthdate = :birthdate, lastlogin = :lastlogin, last_ip = :last_ip";
 			
 			if ($auth->allowedToEditAccountGroupID) {
 				$sql .= ", group_id = :group_id";
@@ -95,7 +86,6 @@ if ($account) {
 			$sql .= " WHERE account_id = :account_id";
 			$sth  = $server->connection->getStatement($sql);
 			$sth->execute($bind);
-
 			if ($auth->allowedToEditAccountBalance) {
 				$deposit = $balance - $account->balance;
 				$session->loginServer->depositCredits($account->account_id, $deposit);
