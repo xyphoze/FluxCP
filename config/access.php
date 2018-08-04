@@ -65,8 +65,9 @@ return array(
 			'prefs'			=> AccountLevel::NOONE,
 			'changeslot'	=> AccountLevel::NORMAL,
 			'resetlook'		=> AccountLevel::NORMAL,
-			'resetpos'		=> AccountLevel::NORMAL,
-            'resetstat'     => AccountLevel::NORMAL,
+			'resetpos'		=> AccountLevel::LOWGM,
+            'resetstat'     => AccountLevel::LOWGM,
+            'resetskill'    => AccountLevel::NORMAL,
 			'mapstats'		=> AccountLevel::NORMAL,
 			'divorce'		=> AccountLevel::NORMAL
 		),
@@ -245,6 +246,7 @@ return array(
 		'ResetLook'          => AccountLevel::LOWGM,  // Minimum group level required to reset another character's look.
 		'ResetPosition'      => AccountLevel::LOWGM,  // Minimum group level required to reset another character's position.
         'ResetStat'          => AccountLevel::LOWGM,  // Minimum group level required to reset another character's stat.
+        'ResetSkill'         => AccountLevel::LOWGM,  // Minimum group level required to reset another character's skill.
 		'ViewWoeDisallowed'  => AccountLevel::LOWGM,  // Minimum group level required to bypass WoE-disabled page security check.
 		'SeeCpLoginLogPass'  => AccountLevel::NOONE,  // Minimum group level required to see password in CP login log (also requires CpLoginLogShowPassword in application.php)
 		'SearchCpLoginLogPw' => AccountLevel::NOONE,  // Minimum group level required to search through passwords in the CP login log.

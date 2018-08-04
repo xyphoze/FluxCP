@@ -13,7 +13,10 @@ if (($isMine || $auth->allowedToResetPosition) && $auth->actionAllowed('characte
 	$pageMenu['Reset Position'] = $this->url('character', 'resetpos', array('id' => $char->char_id));
 }
 if (($isMine || $auth->allowedToResetStat) && $auth->actionAllowed('character', 'resetstat')) {
-        $pageMenu['Reset Stat'] = $this->url('character', 'resetstat', array('id' => $char->char_id));
+    $pageMenu['Reset Stat'] = $this->url('character', 'resetstat', array('id' => $char->char_id));
+}
+if (($isMine || $auth->allowedToResetSkill) && $auth->actionAllowed('character', 'resetskill')) {
+    $pageMenu['Reset Skill'] = $this->url('character', 'resetskill', array('id' => $char->char_id));
 }
 if ($char->partner_id && ($isMine || $auth->allowedToDivorceCharacter) && $auth->actionAllowed('character', 'divorce')) {
 	$pageMenu['Divorce'] = $this->url('character', 'divorce', array('id' => $char->char_id));

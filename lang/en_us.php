@@ -384,6 +384,10 @@ return array(
 	'CantResetStatWhenOnline'  => 'Cannot reset stat while %s is online.',
 	'ResetStatSuccessful' => "%s's stat has been reset!",
 	'ResetStatFailed'     => "Failed to reset %s's stat.",
+	// - character/resetskill
+	'CantResetSkillWhenOnline'  => 'Cannot reset skill while %s is online.',
+	'ResetSkillSuccessful' => "%s's skill has been reset!",
+	'ResetSkillFailed'     => "Failed to reset %s's skill.",
 	// - character/view
 	// - character/divorce
 	'DivorceTitle'            => 'Divorce',

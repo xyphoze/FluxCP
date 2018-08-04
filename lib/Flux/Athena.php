@@ -751,6 +751,47 @@ class Flux_Athena {
 		}
 		return false;
 	}
+
+	public function resetSkillPoint($charID)
+	{
+		// Return values:
+		// -1 = Character is online, cannot reset.
+		// -2 = Unknown character.
+		// false = Failed to reset.
+		// true  = Successfully reset.
+		
+		$psid = "(142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,238,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019)";
+
+		$char = $this->getCharacter($charID);
+
+		if (!$char) {
+			return -2;
+		}
+		if ($char->online) {
+			return -1;
+		}
+		$sql = "SELECT `char_id`,`skill_point` FROM {$this->charMapDatabase}.`char` WHERE `char`.`char_id` = ?";
+		$sth  = $this->connection->getStatement($sql);
+		if ($sth->execute(array($charID))) {
+			$result=$sth->fetch();
+			$sp = $result->skill_point;
+			$sql = "SELECT `lv` FROM `skill` WHERE NOT `id` IN {$psid} AND `char_id` = ?";
+			$sth  = $this->connection->getStatement($sql);
+			if ($sth->execute(array($charID))) {
+				while($result = $sth->fetch()) {
+					$sp += $result->lv;
+				}
+			}
+			$sql  = "DELETE FROM `skill` WHERE NOT `id` IN {$psid} AND `char_id` = ?";
+			$sth  = $this->connection->getStatement($sql);
+			if ($sth->execute(array($charID))) {
+				$sql  = "UPDATE {$this->charMapDatabase}.`char` SET `skill_point`={$sp} WHERE char_id = ?";
+				$sth  = $this->connection->getStatement($sql);
+				if ($sth->execute(array($charID))) { return true; }
+			}
+		}
+		return false;
+	}
 	
 	/**
 	 * Get the current server time, based on the DateTimezone servers.php config.
